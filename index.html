@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>⚽ Goal Alert Aggregator - Live Football News</title>
+    <meta name="description" content="Live goal alerts and football news from Brazil, Portugal, China, UK, Spain, and more!" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" />
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="icon">⚽</span>
+                <div>
+                    <h1>Goal Alert Aggregator</h1>
+                    <span class="tagline">🌍 Live Football News from 10+ Countries</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="refreshBtn" onclick="fetchAllNews()">
+                    <span class="refresh-icon">🔄</span> Refresh
+                </button>
+                <span id="lastUpdate" class="last-update">⏰ Updating...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== COUNTRY FILTER BAR ===== -->
+    <nav class="filter-bar">
+        <div class="filter-container">
+            <span class="filter-label">🌍 Filter:</span>
+            <button class="filter-btn active" data-country="all" onclick="setFilter('all')">
+                🌍 All
+            </button>
+            <button class="filter-btn" data-country="brazil" onclick="setFilter('brazil')">
+                🇧🇷 Brazil
+            </button>
+            <button class="filter-btn" data-country="portugal" onclick="setFilter('portugal')">
+                🇵🇹 Portugal
+            </button>
+            <button class="filter-btn" data-country="china" onclick="setFilter('china')">
+                🇨🇳 China
+            </button>
+            <button class="filter-btn" data-country="uk" onclick="setFilter('uk')">
+                🇬🇧 UK
+            </button>
+            <button class="filter-btn" data-country="spain" onclick="setFilter('spain')">
+                🇪🇸 Spain
+            </button>
+            <button class="filter-btn" data-country="italy" onclick="setFilter('italy')">
+                🇮🇹 Italy
+            </button>
+            <button class="filter-btn" data-country="france" onclick="setFilter('france')">
+                🇫🇷 France
+            </button>
+            <button class="filter-btn" data-country="germany" onclick="setFilter('germany')">
+                🇩🇪 Germany
+            </button>
+            <button class="filter-btn" data-country="argentina" onclick="setFilter('argentina')">
+                🇦🇷 Argentina
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== GOAL ALERT BANNER ===== -->
+    <div id="goalBanner" class="goal-banner hidden">
+        <div class="goal-banner-content">
+            <span class="goal-emoji">⚽</span>
+            <span class="goal-text">GOAL ALERT! Latest goal updates</span>
+            <span class="goal-count" id="goalCount">0</span>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <!-- Loading -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>⚽ Fetching the latest football news...</p>
+        </div>
+
+        <!-- Error -->
+        <div id="errorMessage" class="error-message hidden">
+            <span>⚠️</span>
+            <div>
+                <h4>Oops! Something went wrong</h4>
+                <p>Unable to load news. Please refresh or try again later.</p>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div id="statsBar" class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-icon">📰</span>
+                <span class="stat-label">Total Articles</span>
+                <span class="stat-value" id="totalCount">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">⚽</span>
+                <span class="stat-label">Goal Alerts</span>
+                <span class="stat-value" id="goalCountStat">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🌍</span>
+                <span class="stat-label">Countries</span>
+                <span class="stat-value" id="countryCount">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">📡</span>
+                <span class="stat-label">Sources</span>
+                <span class="stat-value" id="sourceCount">0</span>
+            </div>
+        </div>
+
+        <!-- News Grid -->
+        <div id="newsGrid" class="news-grid"></div>
+
+        <!-- No Results -->
+        <div id="noResults" class="no-results hidden">
+            <span>📭</span>
+            <h3>No news found</h3>
+            <p>No articles available for this country at the moment.</p>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span>⚽</span>
+                <div>
+                    <h4>Goal Alert Aggregator</h4>
+                    <p>Live football news from around the world</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h5>🌍 Countries</h5>
+                    <ul>
+                        <li>🇧🇷 Brazil</li>
+                        <li>🇵🇹 Portugal</li>
+                        <li>🇨🇳 China</li>
+                        <li>🇬🇧 UK</li>
+                        <li>🇪🇸 Spain</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>⚽ Top Leagues</h5>
+                    <ul>
+                        <li>Premier League</li>
+                        <li>La Liga</li>
+                        <li>Serie A</li>
+                        <li>Bundesliga</li>
+                        <li>Ligue 1</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>📱 Connect</h5>
+                    <ul>
+                        <li><a href="https://t.me/Goal_Alert_ProBot" target="_blank">🤖 Telegram Bot</a></li>
+                        <li><a href="#" onclick="refreshPage()">🔄 Refresh</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Goal Alert Aggregator. All rights reserved.</p>
+                <p class="footer-small">⚽ Powered by public RSS feeds · No API keys required</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
