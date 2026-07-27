@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://goal-alert-aggregator.netlify.app/sitemap.xml
