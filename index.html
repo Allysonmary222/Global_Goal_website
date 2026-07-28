@@ -1,177 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>⚽ Goal Alert Aggregator - Live Football News</title>
-    <meta name="description" content="Live goal alerts and football news from Brazil, Portugal, China, UK, Spain, and more!" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalCryptos.Trade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+        .logo {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #f7971e, #ffd200);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #a8b2d1;
+            margin-bottom: 30px;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #ffd200;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .redirect-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #f7971e, #ffd200);
+            color: #1a1a2e;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.2s;
+        }
+        .redirect-link:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #5a6a8a;
+        }
+    </style>
 </head>
 <body>
-    <!-- ===== HEADER ===== -->
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <span class="icon">⚽</span>
-                <div>
-                    <h1>Goal Alert Aggregator</h1>
-                    <span class="tagline">🌍 Live Football News from 10+ Countries</span>
-                </div>
-            </div>
-            <div class="header-actions">
-                <button id="refreshBtn" onclick="fetchAllNews()">
-                    <span class="refresh-icon">🔄</span> Refresh
-                </button>
-                <span id="lastUpdate" class="last-update">⏰ Updating...</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- ===== COUNTRY FILTER BAR ===== -->
-    <nav class="filter-bar">
-        <div class="filter-container">
-            <span class="filter-label">🌍 Filter:</span>
-            <button class="filter-btn active" data-country="all" onclick="setFilter('all')">
-                🌍 All
-            </button>
-            <button class="filter-btn" data-country="brazil" onclick="setFilter('brazil')">
-                🇧🇷 Brazil
-            </button>
-            <button class="filter-btn" data-country="portugal" onclick="setFilter('portugal')">
-                🇵🇹 Portugal
-            </button>
-            <button class="filter-btn" data-country="china" onclick="setFilter('china')">
-                🇨🇳 China
-            </button>
-            <button class="filter-btn" data-country="uk" onclick="setFilter('uk')">
-                🇬🇧 UK
-            </button>
-            <button class="filter-btn" data-country="spain" onclick="setFilter('spain')">
-                🇪🇸 Spain
-            </button>
-            <button class="filter-btn" data-country="italy" onclick="setFilter('italy')">
-                🇮🇹 Italy
-            </button>
-            <button class="filter-btn" data-country="france" onclick="setFilter('france')">
-                🇫🇷 France
-            </button>
-            <button class="filter-btn" data-country="germany" onclick="setFilter('germany')">
-                🇩🇪 Germany
-            </button>
-            <button class="filter-btn" data-country="argentina" onclick="setFilter('argentina')">
-                🇦🇷 Argentina
-            </button>
-        </div>
-    </nav>
-
-    <!-- ===== GOAL ALERT BANNER ===== -->
-    <div id="goalBanner" class="goal-banner hidden">
-        <div class="goal-banner-content">
-            <span class="goal-emoji">⚽</span>
-            <span class="goal-text">GOAL ALERT! Latest goal updates</span>
-            <span class="goal-count" id="goalCount">0</span>
-        </div>
+    <div class="container">
+        <div class="logo">🚀</div>
+        <h1>GlobalCryptos.Trade</h1>
+        <p class="subtitle">Fast cross-border crypto deals • OTC • P2P • 50+ Countries</p>
+        <div class="spinner"></div>
+        <p style="margin: 15px 0 5px; color: #a8b2d1;">Redirecting to our Telegram channel...</p>
+        <a href="https://t.me/GlobalCryptosTrade" class="redirect-link">🔗 Click here if not redirected</a>
+        <p class="footer">You will be redirected automatically in a moment</p>
     </div>
 
-    <!-- ===== MAIN CONTENT ===== -->
-    <main>
-        <!-- Loading -->
-        <div id="loading" class="loading hidden">
-            <div class="spinner"></div>
-            <p>⚽ Fetching the latest football news...</p>
-        </div>
-
-        <!-- Error -->
-        <div id="errorMessage" class="error-message hidden">
-            <span>⚠️</span>
-            <div>
-                <h4>Oops! Something went wrong</h4>
-                <p>Unable to load news. Please refresh or try again later.</p>
-            </div>
-        </div>
-
-        <!-- Stats Bar -->
-        <div id="statsBar" class="stats-bar">
-            <div class="stat-item">
-                <span class="stat-icon">📰</span>
-                <span class="stat-label">Total Articles</span>
-                <span class="stat-value" id="totalCount">0</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-icon">⚽</span>
-                <span class="stat-label">Goal Alerts</span>
-                <span class="stat-value" id="goalCountStat">0</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-icon">🌍</span>
-                <span class="stat-label">Countries</span>
-                <span class="stat-value" id="countryCount">0</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-icon">📡</span>
-                <span class="stat-label">Sources</span>
-                <span class="stat-value" id="sourceCount">0</span>
-            </div>
-        </div>
-
-        <!-- News Grid -->
-        <div id="newsGrid" class="news-grid"></div>
-
-        <!-- No Results -->
-        <div id="noResults" class="no-results hidden">
-            <span>📭</span>
-            <h3>No news found</h3>
-            <p>No articles available for this country at the moment.</p>
-        </div>
-    </main>
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <span>⚽</span>
-                <div>
-                    <h4>Goal Alert Aggregator</h4>
-                    <p>Live football news from around the world</p>
-                </div>
-            </div>
-            <div class="footer-links">
-                <div class="footer-column">
-                    <h5>🌍 Countries</h5>
-                    <ul>
-                        <li>🇧🇷 Brazil</li>
-                        <li>🇵🇹 Portugal</li>
-                        <li>🇨🇳 China</li>
-                        <li>🇬🇧 UK</li>
-                        <li>🇪🇸 Spain</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>⚽ Top Leagues</h5>
-                    <ul>
-                        <li>Premier League</li>
-                        <li>La Liga</li>
-                        <li>Serie A</li>
-                        <li>Bundesliga</li>
-                        <li>Ligue 1</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>📱 Connect</h5>
-                    <ul>
-                        <li><a href="https://t.me/Goal_Alert_ProBot" target="_blank">🤖 Telegram Bot</a></li>
-                        <li><a href="#" onclick="refreshPage()">🔄 Refresh</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 Goal Alert Aggregator. All rights reserved.</p>
-                <p class="footer-small">⚽ Powered by public RSS feeds · No API keys required</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <script>
+        // IMMEDIATE REDIRECT - this happens as soon as the script loads
+        window.location.replace('https://t.me/GlobalCryptosTrade');
+    </script>
 </body>
 </html>
